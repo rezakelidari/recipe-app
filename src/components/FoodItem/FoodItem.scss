@@ -1,0 +1,49 @@
+.foodItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 150px;
+  margin: 0.5rem 0;
+  overflow: hidden;
+  filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.25));
+  background: #ffffff;
+  border-radius: 1rem;
+  cursor: pointer;
+  position: relative;
+
+  .banner {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: 0.3s ease all;
+  }
+
+  &:hover {
+    .banner {
+      transform: scale(1.1);
+    }
+  }
+
+  .gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(#00000000, #000000aa);
+  }
+
+  .title {
+    font-weight: 300;
+    font-size: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 0.5rem;
+    position: absolute;
+    bottom: 10px;
+    color: #ffffff;
+    z-index: 1;
+    width: 99%;
+  }
+}
