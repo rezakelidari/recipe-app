@@ -17,4 +17,16 @@ body {
 a {
   color: unset;
   text-decoration: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  transition: 0.3s ease all;
+
+  &:hover {
+    background: rgba(0, 125, 255, 0.3);
+    border-radius: 5px;
+    border-color: transparent;
+  }
+}
+
+p {
+  line-height: 1.75rem;
 }

@@ -1,0 +1,33 @@
+.picksMain {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .container {
+    max-width: 1000px;
+    width: 100%;
+
+    .error {
+      background: #ff0000cc;
+      padding: 2rem 4rem;
+      border-radius: 1rem;
+      color: #ffffff;
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+
+// Responsive
+@media only screen and (max-width: 768px) {
+  .popularMain {
+    .container {
+      .item {
+        height: 200px;
+      }
+    }
+  }
+}
