@@ -52,25 +52,27 @@
 }
 
 // Responsive
-.foodMain {
-  align-items: center;
-  justify-content: unset;
-  flex-direction: column;
-  padding: 2rem;
-  margin: 0;
-  gap: 1rem;
+@media only screen and (max-width: 768px) {
+  .foodMain {
+    align-items: center;
+    justify-content: unset;
+    flex-direction: column;
+    padding: 2rem;
+    margin: 0;
+    gap: 1rem;
 
-  .image {
-    width: 100%;
-  }
-
-  .info {
-    .title {
-      font-size: 1.5rem;
+    .image {
+      width: 100%;
     }
 
-    .details {
-      max-width: unset;
+    .info {
+      .title {
+        font-size: 1.5rem;
+      }
+
+      .details {
+        max-width: unset;
+      }
     }
   }
 }
