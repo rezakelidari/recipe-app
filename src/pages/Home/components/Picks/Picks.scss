@@ -9,25 +9,27 @@
     max-width: 1000px;
     width: 100%;
 
-    .error {
-      background: #ff0000cc;
-      padding: 2rem 4rem;
+    .loading {
+      background: #000000cc;
       border-radius: 1rem;
       color: #ffffff;
       font-size: 1.5rem;
       display: flex;
+      align-items: center;
       justify-content: center;
+      width: 100%;
+      height: 165px;
     }
-  }
-}
 
-// Responsive
-@media only screen and (max-width: 768px) {
-  .popularMain {
-    .container {
-      .item {
-        height: 200px;
-      }
+    .error {
+      background: #ff0000cc;
+      border-radius: 1rem;
+      color: #ffffff;
+      font-size: 1.5rem;
+      display: grid;
+      place-content: center;
+      height: 165px;
+      width: 100%;
     }
   }
 }

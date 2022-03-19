@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { FaHamburger, FaPizzaSlice } from "react-icons/fa";
 import { GiNoodles } from "react-icons/gi";
 import { BsUiRadiosGrid } from "react-icons/bs";
@@ -15,7 +14,6 @@ import FoodItem from "../../../../components/FoodItem";
 import "./Foods.scss";
 
 export default function Foods() {
-  const params = useParams();
   enum categories {
     all = "",
     italian = "italian",
@@ -28,64 +26,79 @@ export default function Foods() {
     errorState: false,
     errorMessage: "",
   });
+  const [loading, setLoading] = useState(true);
   const [selectedCategory, selectCategory] = useState(categories.all);
 
   useEffect(() => {
-    checkStorage("foods")
-      ? setFoods(readItem("foods"))
-      : axios
-          .get(
-            `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}`
-          )
-          .then((response) => {
-            setFoods(response.data.results);
-            saveItem("foods", response.data.results);
-          })
-          .catch((error) =>
-            setError({ errorState: true, errorMessage: error.message })
-          );
+    if (checkStorage("foods")) {
+      setFoods(readItem("foods"));
+      setLoading(false);
+    } else {
+      axios
+        .get(
+          `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}`
+        )
+        .then((response) => {
+          setFoods(response.data.results);
+          saveItem("foods", response.data.results);
+          setLoading(false);
+        })
+        .catch((error) => {
+          setError({ errorState: true, errorMessage: error.message });
+          setLoading(false);
+        });
+    }
   }, []);
 
   useEffect(() => {
-    checkStorage(
-      `foods${
-        selectedCategory !== categories.all ? `-${selectedCategory}` : ""
-      }`
-    )
-      ? setFoods(
-          readItem(
+    setLoading(true);
+
+    if (
+      checkStorage(
+        `foods${
+          selectedCategory !== categories.all ? `-${selectedCategory}` : ""
+        }`
+      )
+    ) {
+      setFoods(
+        readItem(
+          `foods${
+            selectedCategory !== categories.all ? `-${selectedCategory}` : ""
+          }`
+        )
+      );
+      setLoading(false);
+    } else {
+      axios
+        .get(
+          `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}${
+            selectedCategory !== categories.all
+              ? `&cuisine=${selectedCategory}`
+              : ""
+          }`
+        )
+        .then((response) => {
+          setFoods(response.data.results);
+          saveItem(
             `foods${
               selectedCategory !== categories.all ? `-${selectedCategory}` : ""
-            }`
-          )
-        )
-      : axios
-          .get(
-            `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}${
-              selectedCategory !== categories.all
-                ? `&cuisine=${selectedCategory}`
-                : ""
-            }`
-          )
-          .then((response) => {
-            setFoods(response.data.results);
-            saveItem(
-              `foods${
-                selectedCategory !== categories.all
-                  ? `-${selectedCategory}`
-                  : ""
-              }`,
-              response.data.results
-            );
-          })
-          .catch((error) =>
-            setError({ errorState: true, errorMessage: error.message })
+            }`,
+            response.data.results
           );
+          setLoading(false);
+        })
+        .catch((error) => {
+          setError({ errorState: true, errorMessage: error.message });
+          setLoading(false);
+        });
+    }
   }, [selectedCategory]);
 
   return (
     <div className="foodsMain">
-      {errorState ? (
+      {loading ? (
+        <div className="loading">Loading ...</div>
+      ) : errorState ? (
         <div className="error">{errorMessage}</div>
       ) : (
         <>

@@ -29,23 +29,29 @@ export default function Picks({
     errorState: false,
     errorMessage: "",
   });
+  const [loading, setLoading] = useState(true);
   const width: number =
     window.screenX > 0 ? window.screenX : window.screen.availWidth;
 
   useEffect(() => {
-    checkStorage(type)
-      ? setPopular(readItem(type))
-      : axios
-          .get(
-            `https://api.spoonacular.com/recipes/random?apiKey=${apiKey}&number=6`
-          )
-          .then((response) => {
-            setPopular(response.data.recipes);
-            saveItem(type, response.data.recipes);
-          })
-          .catch((error) =>
-            setError({ errorState: true, errorMessage: error.message })
-          );
+    if (checkStorage(type)) {
+      setPopular(readItem(type));
+      setLoading(false);
+    } else {
+      axios
+        .get(
+          `https://api.spoonacular.com/recipes/random?apiKey=${apiKey}&number=6`
+        )
+        .then((response) => {
+          setPopular(response.data.recipes);
+          saveItem(type, response.data.recipes);
+          setLoading(false);
+        })
+        .catch((error) => {
+          setError({ errorState: true, errorMessage: error.message });
+          setLoading(false);
+        });
+    }
   }, []);
 
   return (
@@ -54,7 +60,9 @@ export default function Picks({
         <h3>
           {type === picksTypes.popular ? "Popular Foods" : "Vegetarian Foods"}
         </h3>
-        {errorState ? (
+        {loading ? (
+          <div className="loading">Loading ...</div>
+        ) : errorState ? (
           <div className="error">{errorMessage}</div>
         ) : (
           <Splide

@@ -8,20 +8,15 @@
   filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.25));
   background: #ffffff;
   border-radius: 1rem;
-  cursor: pointer;
   position: relative;
+  overflow: hidden;
+  cursor: default;
 
   .banner {
-    height: 100%;
+    height: 150px;
     width: 100%;
     object-fit: cover;
     transition: 0.3s ease all;
-  }
-
-  &:hover {
-    .banner {
-      transform: scale(1.1);
-    }
   }
 
   .gradient {
@@ -45,5 +40,61 @@
     color: #ffffff;
     z-index: 1;
     width: 99%;
+  }
+
+  .cartMenu {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    z-index: 50;
+    transition: 0.3s ease all;
+    opacity: 0;
+
+    button {
+      background: #ffffff;
+      border: none;
+      outline: none;
+      display: grid;
+      place-content: center;
+      font-size: 1.5rem;
+      height: 35px;
+      width: 35px;
+      border-radius: 100%;
+      cursor: pointer;
+    }
+
+    input {
+      background: #ffffff;
+      border: none;
+      outline: none;
+      text-align: center;
+      font-size: 1.5rem;
+      height: 35px;
+      width: 35px;
+      border-radius: 0.5rem;
+    }
+  }
+
+  &:hover {
+    .banner {
+      filter: blur(5px);
+    }
+
+    .cartMenu {
+      bottom: 50%;
+      left: 50%;
+      opacity: 1;
+    }
+  }
+}
+
+// Responsive
+@media only screen and (max-width: 768px) {
+  .foodItem {
+    height: 200px;
   }
 }

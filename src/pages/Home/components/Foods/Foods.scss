@@ -4,16 +4,29 @@
   align-items: center;
   flex-direction: column;
   width: 100%;
+  padding: 1rem;
 
-  .error {
-    background: #ff0000cc;
-    padding: 2rem 4rem;
+  .loading {
+    background: #000000cc;
     border-radius: 1rem;
     color: #ffffff;
     font-size: 1.5rem;
     display: flex;
+    align-items: center;
     justify-content: center;
     width: 100%;
+    height: 165px;
+  }
+
+  .error {
+    background: #ff0000cc;
+    border-radius: 1rem;
+    color: #ffffff;
+    font-size: 1.5rem;
+    display: grid;
+    place-content: center;
+    width: 100%;
+    height: 165px;
   }
 
   .categories {
