@@ -8,7 +8,7 @@ import { BiDollar, BiLike } from "react-icons/bi";
 
 import "./Food.scss";
 
-export default function Food() {
+export default function FoodInfo() {
   const [
     { foodTitle, foodImage, foodDesc, foodPrice, foodLikes },
     setFoodInfo,

@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
-import Food from "./pages/Food";
+import FoodInfo from "./pages/FoodInfo";
 import Home from "./pages/Home";
 
 function App() {
@@ -12,8 +12,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/food/" element={<Food />}>
-            <Route path="/food/:id" element={<Food />} />
+          <Route path="/food/" element={<FoodInfo />}>
+            <Route path="/food/:id" element={<FoodInfo />} />
           </Route>
         </Routes>
       </BrowserRouter>
