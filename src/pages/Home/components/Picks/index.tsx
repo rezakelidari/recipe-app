@@ -10,7 +10,6 @@ import {
   readItem,
   saveItem,
 } from "../../../../helper/localStorage";
-import { Link } from "react-router-dom";
 import FoodItem from "../../../../components/FoodItem";
 
 export enum picksTypes {
