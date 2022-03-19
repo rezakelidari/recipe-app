@@ -4,10 +4,19 @@ import { useNavigate, useParams } from "react-router-dom";
 import { checkStorage, readItem, saveItem } from "../../helper/localStorage";
 import { apiKey } from "../../helper/statics";
 
-import { BiDollar, BiLike } from "react-icons/bi";
+import { BiDollar, BiLike, BiTrash } from "react-icons/bi";
 
 import "./FoodInfo.scss";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { IState } from "../../states/cartCounters/counterReducer";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import { BsCartPlus } from "react-icons/bs";
+import {
+  addItem,
+  itemDecrease,
+  itemIncrease,
+  removeItem,
+} from "../../states/cartCounters/counterActions";
 
 export default function FoodInfo() {
   const [
@@ -27,6 +36,18 @@ export default function FoodInfo() {
   const [loading, setLoading] = useState(true);
   const id = useParams().id as string;
   const navigate = useNavigate();
+
+  const cartItems: IState = useSelector((state: RootStateOrAny) => state);
+  const dispatch = useDispatch();
+
+  const isInCart: boolean = cartItems.selectedItems.some(
+    (item) => item.id === parseInt(id)
+  );
+
+  const quantity: number = isInCart
+    ? (cartItems.selectedItems.find((item) => item.id === parseInt(id))
+        ?.quantity as number)
+    : 0;
 
   useEffect(() => {
     if (id === undefined) {
@@ -77,18 +98,38 @@ export default function FoodInfo() {
         <>
           <div className="left">
             <img src={foodImage} alt={foodTitle} className="image" />
-            <div
-              className="cartMenu"
-              onClick={(event) => event.preventDefault()}
-            >
-              <button>
-                <AiOutlineMinus />
+            {isInCart ? (
+              <div
+                className={"cartMenu"}
+                onClick={(event) => event.preventDefault()}
+              >
+                <button
+                  onClick={() =>
+                    !(quantity < 1) &&
+                    (quantity === 1
+                      ? dispatch(removeItem(parseInt(id)))
+                      : dispatch(itemDecrease(parseInt(id))))
+                  }
+                  className={`${quantity < 1 && "fadeMinus"}`}
+                >
+                  {quantity > 1 ? <AiOutlineMinus /> : <BiTrash />}
+                </button>
+                <input type="text" readOnly value={quantity} />
+                <button onClick={() => dispatch(itemIncrease(parseInt(id)))}>
+                  <AiOutlinePlus />
+                </button>
+              </div>
+            ) : (
+              <button
+                className={"cartAdd"}
+                onClick={(event) => (
+                  event.preventDefault(), dispatch(addItem(parseInt(id)))
+                )}
+              >
+                Add to Cart
+                <BsCartPlus />
               </button>
-              <input type="text" name="" id="" readOnly value={1} />
-              <button>
-                <AiOutlinePlus />
-              </button>
-            </div>
+            )}
           </div>
           <div className="right">
             <h2 className="title">{foodTitle}</h2>
