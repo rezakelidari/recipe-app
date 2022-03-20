@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
-import { IState } from "../../states/cartCounters/counterReducer";
+import { IState } from "../../states/cartCounters/cartReducer";
 
 import "./FoodItem.scss";
 import {
@@ -10,7 +10,7 @@ import {
   itemDecrease,
   itemIncrease,
   removeItem,
-} from "../../states/cartCounters/counterActions";
+} from "../../states/cartCounters/cartActions";
 import { BiTrash } from "react-icons/bi";
 import { BsCartPlus } from "react-icons/bs";
 
