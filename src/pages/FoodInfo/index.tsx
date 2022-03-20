@@ -58,9 +58,7 @@ export default function FoodInfo() {
           foodTitle: readItem(id).title,
           foodImage: readItem(id).image,
           foodDesc: readItem(id).summary,
-          foodPrice: (
-            readItem(id).pricePerServing / readItem(id).servings
-          ).toFixed(2) as unknown as number,
+          foodPrice: readItem(id).pricePerServing.toFixed(2),
           foodLikes: readItem(id).aggregateLikes,
         });
         setLoading(false);
