@@ -28,5 +28,5 @@ export function itemDecrease(id: number): IAction {
 }
 
 export function clear(): IAction {
-  return { type: types.remove };
+  return { type: types.clear };
 }

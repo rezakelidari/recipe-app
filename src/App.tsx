@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
+import Cart from "./pages/Cart";
 import FoodInfo from "./pages/FoodInfo";
 import Home from "./pages/Home";
 import store from "./states/store";
@@ -18,6 +19,7 @@ function App() {
             <Route path="/food/" element={<FoodInfo />}>
               <Route path="/food/:id" element={<FoodInfo />} />
             </Route>
+            <Route path="/cart" element={<Cart />} />
           </Routes>
         </Provider>
       </BrowserRouter>

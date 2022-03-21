@@ -10,9 +10,8 @@
     border-radius: 1rem;
     color: #ffffff;
     font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    place-content: center;
     height: 165px;
     width: 100%;
   }

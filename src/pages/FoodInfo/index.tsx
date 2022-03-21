@@ -3,10 +3,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { checkStorage, readItem, saveItem } from "../../helper/localStorage";
 import { apiKey } from "../../helper/statics";
-
 import { BiDollar, BiLike, BiTrash } from "react-icons/bi";
-
-import "./FoodInfo.scss";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { IState } from "../../states/cartCounters/cartReducer";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
@@ -17,6 +14,8 @@ import {
   itemIncrease,
   removeItem,
 } from "../../states/cartCounters/cartActions";
+
+import "./FoodInfo.scss";
 
 export default function FoodInfo() {
   const [
