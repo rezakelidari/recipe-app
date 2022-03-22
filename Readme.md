@@ -9,7 +9,7 @@
 
 <h1 align="center">Recipe App</h1>
   <p align="center">
-    A simple project for a restaurant implemented with React.js, TypeScript and Sass
+    A simple project for a restaurant implemented with React.js, TypeScript, Redux and Sass
     <br />
     <br />
     <a href="https://recipe-app-kappa-lac.vercel.app/">View Demo</a>
@@ -47,6 +47,8 @@ A simple project for a restaurant implemented with React.js, TypeScript and Sass
 ### Built With
 
 - [React.js](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Redux](https://redux.js.org/)
 - [Axios](https://axios-http.com/)
 - [Spoonacular API](https://spoonacular.com/food-api)
 
