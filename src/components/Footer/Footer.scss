@@ -1,0 +1,27 @@
+.footerMain {
+  background: #000000;
+  color: #ffffff;
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.25rem;
+
+  .title {
+    font-weight: 300;
+    font-size: 1.5rem;
+  }
+
+  a:not(a:hover) {
+    border-color: #ffffff;
+  }
+}
+
+// Responsive
+@media only screen and (max-width: 768px) {
+  .footerMain {
+    flex-direction: column;
+    padding: 2rem;
+    gap: 3rem;
+  }
+}

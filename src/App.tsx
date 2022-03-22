@@ -3,10 +3,11 @@ import { Provider } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
-import Cart from "./pages/Cart";
-import FoodInfo from "./pages/FoodInfo";
-import Home from "./pages/Home";
 import store from "./states/store";
+import Home from "./pages/Home";
+import FoodInfo from "./pages/FoodInfo";
+import Cart from "./pages/Cart";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             </Route>
             <Route path="/cart" element={<Cart />} />
           </Routes>
+          <Footer />
         </Provider>
       </BrowserRouter>
     </div>
