@@ -32,9 +32,10 @@
   .categories {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    padding: 1rem 2rem;
-    width: 600px;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    max-width: 600px;
 
     .item {
       background: #000000;
@@ -83,6 +84,15 @@
       .foodItem {
         margin: 0;
       }
+    }
+  }
+}
+
+// Responsive
+@media only screen and (max-width: 768px) {
+  .foodsMain {
+    .categories {
+      gap: 0.5rem;
     }
   }
 }

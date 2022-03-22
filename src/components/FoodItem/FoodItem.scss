@@ -13,7 +13,7 @@
   cursor: default;
 
   .banner {
-    height: 150px;
+    height: 100%;
     width: 100%;
     object-fit: cover;
     transition: 0.3s ease all;
@@ -130,5 +130,16 @@
 @media only screen and (max-width: 768px) {
   .foodItem {
     height: 200px;
+
+    &:hover {
+      .banner {
+        filter: unset;
+      }
+
+      .cartMenu,
+      .cartAdd {
+        display: none;
+      }
+    }
   }
 }
